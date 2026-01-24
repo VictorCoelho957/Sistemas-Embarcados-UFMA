@@ -1,48 +1,26 @@
-\# Prova 02: Calculadora Binária com Máquina de Estados e Display de 7 Segmentos 🧮
+\# Prova 02: Calculadora Binária com Máquina de Estados 🧮
 
 
 
-Este projeto consiste em uma calculadora embarcada desenvolvida com o microcontrolador \*\*ATmega328P\*\*. O sistema realiza a soma de dois valores (0 a 3) inseridos via interface de botões e exibe o resultado final em formato binário.
+Desenvolvimento de uma calculadora funcional para soma de dois números (0 a 3) utilizando o microcontrolador \*\*ATmega328P\*\*.
 
 
 
-\## 🛠️ Especificações Técnicas
+\## 🛠️ Requisitos de Hardware (KiCad)
 
-\* \*\*Microcontrolador:\*\* ATmega328P (Arduino Uno).
+\* \*\*Arquitetura Mínima:\*\* Uso do ATmega328P com cristal externo e capacitores de carga\[cite: 72].
 
-\* \*\*Entradas:\*\* 2 botões com resistores de \*pull-up\* internos (Incrementar e Enter).
+\* \*\*Gestão de Energia:\*\* Regulador de tensão para 5V e capacitores de desacoplamento, com bornes para alimentação externa (7-12V)\[cite: 73, 74].
 
-\* \*\*Saída Visual:\*\* Display de 7 segmentos (cátodo comum) para interface do usuário e 3 LEDs para o resultado binário.
-
-
-
-\## ⚙️ Lógica de Software (Máquina de Estados)
-
-O firmware foi estruturado como uma máquina de estados finitos para gerenciar o fluxo de operação:
-
-\* \*\*Estado 0:\*\* Seleção do primeiro valor (0-3).
-
-\* \*\*Estado 1:\*\* Seleção do segundo valor (0-3).
-
-\* \*\*Estado 2:\*\* Processamento e exibição da soma em binário nos LEDs.
+\* \*\*Interface:\*\* Display de 7 segmentos (catodo comum) para entrada e 3 LEDs para o resultado da soma em binário\[cite: 58, 65].
 
 
 
-Foi implementada uma lógica de \*\*Debounce\*\* via software para garantir a integridade da leitura dos botões.
+\## ⚙️ Firmware e Lógica
 
+\* \*\*Máquina de Estados:\*\* O sistema alterna entre entrada do Valor 1, Valor 2 e exibição do Resultado\[cite: 60, 63, 64].
 
+\* \*\*Debounce:\*\* Implementação de filtro via temporização (delay) para garantir a leitura correta dos botões\[cite: 68].
 
-\## 📐 Design de Hardware (KiCad)
-
-O desenvolvimento incluiu o design completo da PCB no \*\*KiCad 9.0.6\*\*, com os seguintes diferenciais:
-
-\* \*\*Regulação de Tensão:\*\* Uso de um regulador \*\*L7805\*\* com capacitores de filtragem para garantir alimentação estável de 5V ao sistema.
-
-\* \*\*Otimização de Layout:\*\* Roteamento de trilhas para os 7 segmentos do display e barramento de saída para os LEDs.
-
-
-
-\## 📺 Simulação e Validação
-
-A validação lógica foi feita através do \*\*Tinkercad\*\*, garantindo que o mapeamento dos bits via `bitRead()` correspondesse corretamente aos pinos físicos do hardware.
+\* \*\*Lógica Binária:\*\* O resultado da soma é processado e decomposto em bits para acionamento individual dos LEDs.
 
